@@ -113,6 +113,21 @@ class LinkedList:
         return True
 
 
+    def remove(self, index):
+        if index < 0 or index >= self.length:
+            return None
+        elif index == 0:
+            return self.pop_first()
+        elif index == self.length - 1:
+            return self.pop()
+        pre = self.get(index - 1)
+        temp = pre.next
+        pre.next = temp.next
+        temp.next = None
+        self.length -= 1
+        return temp
+
+
 ft_linked_list = LinkedList(11)
 ft_linked_list.append(3)
 ft_linked_list.append(23)
@@ -122,7 +137,7 @@ ft_linked_list.append(7)
 print("Initial list:", end=" ")
 ft_linked_list.print_list()
 
-p = ft_linked_list.insert(2, 4)
+p = ft_linked_list.remove(3)
 
 print("Updated list:", end=" ")
 ft_linked_list.print_list()
