@@ -12,10 +12,6 @@ class LinkedList:
         self.length = 1
 
 
-    def get_length(self):
-        return self.length
-
-
     def print_list(self):
         if self.head:
             temp = self.head
@@ -225,5 +221,41 @@ class LinkedList:
             current = current.next
 
 
-    def reverse_between(self, start_index, end_index):
-        pass
+    def reverse_between(self, start, end):
+        if self.head is None:
+            return
+        current = self.head
+        left_tail = None
+        right_head = None
+
+        for _ in range(start):
+            left_tail = current
+            current = current.next
+
+        for _ in range(end - start):
+            current = current.next
+
+        if current.next:
+            right_head = current.next
+
+        # while temp:
+        #     after = temp.next
+        #     temp.next = before
+        #     before = temp
+        #     temp = after
+
+
+
+linked_list = LinkedList(1)
+linked_list.append(2)
+linked_list.append(3)
+linked_list.append(4)
+linked_list.append(5)
+
+print("Original linked list: ")
+linked_list.print_list()
+
+# Reverse a sublist within the linked list
+linked_list.reverse_between(2, 4)
+print("Reversed sublist (2, 4): ")
+linked_list.print_list()
