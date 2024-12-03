@@ -134,6 +134,40 @@ class DoublyLinkedList:
         return temp
 
 
+    def swap_first_last(self):
+        if self.length == 0:
+            return None
+        temp = self.head.value
+        self.head.value = self.tail.value
+        self.tail.value = temp
+
+
+    def reverse(self):
+        if self.length <= 1:
+            return
+        current = self.head
+        while current:
+            after = current.next
+            current.next = current.prev
+            current.prev = after
+            current = after
+        link = self.head
+        self.head = self.tail
+        self.tail = link
+
+
+    def is_palindrome(self):
+        if self.length <= 1:
+            return True
+        left = self.head
+        right = self.tail
+        while left != right:
+            if left.value != right.value:
+                return False
+            left = left.next
+            right = right.prev
+        return True
+
 
 dll = DoublyLinkedList(11)
 dll.insert(1, 1)
