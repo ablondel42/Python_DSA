@@ -4,6 +4,30 @@ class Node:
         self.next = None
 
 
+class QueueStack:
+    def __init__(self):
+        self.stack1 = []
+        self.stack2 = []
+
+    def enqueue(self, value):
+        while len(self.stack1):
+            self.stack2.append(self.stack1.pop())
+        self.stack1.append(value)
+        while len(self.stack2):
+            self.stack1.append(self.stack2.pop())
+
+    def dequeue(self):
+        if self.is_empty():
+            return None
+        return self.stack1.pop()
+
+    def peek(self):
+        return self.stack1[-1]
+
+    def is_empty(self):
+        return len(self.stack1) == 0
+
+
 class Queue:
     def __init__(self, value):
         new_node = Node(value)
@@ -43,15 +67,3 @@ class Queue:
         self.length -= 1
         return temp
 
-
-queue = Queue(1)
-queue.enqueue(2)
-queue.enqueue(3)
-queue.enqueue(4)
-
-queue.dequeue()
-queue.dequeue()
-queue.dequeue()
-queue.dequeue()
-
-queue.print_queue()
