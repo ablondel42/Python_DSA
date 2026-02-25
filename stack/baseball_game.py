@@ -1,18 +1,17 @@
-def baseball_game(ops: list[str]) -> int:
-    stack = []
+def baseball_game(ops):
+    scores = []
 
     for op in ops:
-        if op not in "+DC":
-            stack.append(int(op))
+        if op == "C":
+            scores.pop()
+        elif op == "D":
+            scores.append(scores[-1] * 2)
+        elif op == "+":
+            scores.append(scores[-1] + scores[-2])
         else:
-            if op == 'C':
-                stack.pop()
-            elif op == 'D':
-                stack.append(stack[-1] * 2)
-            elif op == '+':
-                stack.append(stack[-1] + stack[-2])
-    
-    return sum(stack)
+            scores.append(int(op))
+
+    return sum(scores)
 
 
 if __name__ == '__main__':
