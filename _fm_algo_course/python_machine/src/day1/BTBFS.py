@@ -1,0 +1,10 @@
+from typing import Optional, List
+
+class BinaryNode:
+    def __init__(self, value: int) -> None:
+        self.value = value
+        self.left: Optional['BinaryNode'] = None
+        self.right: Optional['BinaryNode'] = None
+
+def bfs_binary_tree(head: Optional[BinaryNode]) -> List[int]:
+    pass
